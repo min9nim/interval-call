@@ -1,5 +1,5 @@
 # interval-call
-'interval-call' is a function that returns a function that prevents the same function from being called repeatedly within a certain interval time.
+`interval-call` is a function that returns a function that prevents the same function called repeatedly within a certain interval time.
 
 <br>
 
