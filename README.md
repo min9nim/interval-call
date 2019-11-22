@@ -18,13 +18,11 @@ let flag = 0
 const inc = () => {
   flag = flag + 1
 }
-const inc20 = intervalCall(20)(inc)
+const inc20 = intervalCall(20)(inc)     // inc20 will never be called repeatedly within 20ms
 
 inc20()   // increase flag +1
 setTimeout(() => {
   inc20()   // this call is skipped called within 20ms
-  expect(flag).to.be.equal(1)
-  done()
 }, 10)
 ```
 

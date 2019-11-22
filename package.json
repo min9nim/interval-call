@@ -1,7 +1,10 @@
 {
   "name": "interval-call",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.3",
+  "description": "Prevents the same function called repeatedly within a certain interval time.",
+  "keywords": [
+    "interval-call"
+  ],  
   "main": "./src/index.js",
   "repository": {
     "type": "git",
@@ -10,7 +13,7 @@
   "scripts": {
     "test": "mocha test/interval-call.spec.js"
   },
-  "author": "min9nim",
+  "author": "min9nim <min9nim@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
