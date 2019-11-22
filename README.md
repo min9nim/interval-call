@@ -23,6 +23,7 @@ const inc20 = intervalCall(20)(inc)     // inc20 will never be called repeatedly
 inc20()   // increase flag +1
 setTimeout(() => {
   inc20()   // this call is skipped called within 20ms
+  console.log(flag) // will print 1 as flag value
 }, 10)
 ```
 
