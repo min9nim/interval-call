@@ -1,4 +1,5 @@
 declare module 'interval-call' {
-  function intervalCall(interval: number, useRootContext: boolean | undefined): any
+  // @ts-ignore
+  function intervalCall(interval: number = 1000, useRootContext: boolean = false): any
   export = intervalCall
 }
