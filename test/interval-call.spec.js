@@ -39,5 +39,17 @@ describe('intervalCall', () => {
     inc1()
     inc2()
     expect(flag).to.be.equal(2)
-  })  
+  })
+  it('should share context when useRootContext is true', () => {
+    const intervalCall20 = intervalCall(20, true)
+    let flag = 0
+    const inc = () => {
+      flag = flag + 1
+    }
+    const inc1 = intervalCall20(inc)
+    const inc2 = intervalCall20(inc)
+    inc1()
+    inc2()
+    expect(flag).to.be.equal(1)
+  })    
 })
