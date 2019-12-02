@@ -31,7 +31,7 @@ setTimeout(() => {
 <br>
 
 ### useRootContext option
-2nd parameter useRootContext is whether sharing context is created
+2nd parameter useRootContext is whether sharing context
 ```
 default: false
 ```
