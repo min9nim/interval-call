@@ -28,4 +28,16 @@ describe('intervalCall', () => {
       done()
     }, 30)
   })
+  it('should create new context every time when intervalCall function created #1', () => {
+    const intervalCall20 = intervalCall(20)
+    let flag = 0
+    const inc = () => {
+      flag = flag + 1
+    }
+    const inc1 = intervalCall20(inc)
+    const inc2 = intervalCall20(inc)
+    inc1()
+    inc2()
+    expect(flag).to.be.equal(2)
+  })  
 })

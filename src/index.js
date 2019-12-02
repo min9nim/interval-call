@@ -1,7 +1,7 @@
 module.exports = function intervalCall(interval = 1000) {
-  // interval 시간 안에 다시 호출된 함수 콜은 무시한다
-  let elapsed = true
   return (fn) => {
+    // interval 시간 안에 다시 호출된 함수 콜은 무시한다
+    let elapsed = true
     return function(...args) {
       if(!elapsed){
         // console.warn((fn.name || 'anonymous function') + ' is canceled by intervalCall')
