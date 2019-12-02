@@ -1,6 +1,6 @@
 {
   "name": "interval-call",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Prevents the same function called repeatedly within a certain interval time.",
   "keywords": [
     "interval-call"
