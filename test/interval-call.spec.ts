@@ -52,4 +52,16 @@ describe('intervalCall', () => {
     inc2()
     expect(flag).to.be.equal(1)
   })
+  it('should be bound this object', () => {
+    const intervalCall20 = intervalCall(20)
+    const obj = {
+      flag: 0,
+      inc: intervalCall20(function(this: any){
+        this.flag = this.flag + 1
+      }),
+    }
+    obj.inc()
+    obj.inc()
+    expect(obj.flag).to.be.equal(1)
+  })  
 })
