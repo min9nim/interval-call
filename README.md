@@ -92,8 +92,8 @@ default: false
 <br>
 
 ```javascript
-const inc = () => 'hello'
-const inc20 = intervalCall(20, { logCancelMessage: true })(inc)
-inc20() // return 'hello'
-inc20() // canceled, and printed console log '`inc` is canceled by intervalCall`'
+const fn = () => 'hello'
+const fn2 = intervalCall(20, { logCancelMessage: true })(fn)
+fn2() // return 'hello'
+fn2() // canceled, and printed console log '`inc` is canceled by intervalCall`'
 ```
