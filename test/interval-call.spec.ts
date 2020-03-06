@@ -41,7 +41,7 @@ describe('intervalCall', () => {
     expect(flag).to.be.equal(2)
   })
   it('should share context when useRootContext is true', () => {
-    const intervalCall20 = intervalCall(20, true)
+    const intervalCall20 = intervalCall(20, {useRootContext: true})
     let flag = 0
     const inc = () => {
       flag = flag + 1
@@ -56,12 +56,44 @@ describe('intervalCall', () => {
     const intervalCall20 = intervalCall(20)
     const obj = {
       flag: 0,
-      inc: intervalCall20(function(this: any){
+      inc: intervalCall20(function(this: any) {
         this.flag = this.flag + 1
       }),
     }
     obj.inc()
     obj.inc()
     expect(obj.flag).to.be.equal(1)
-  })  
+  })
+  it('should be printed cancel message when logCancelMessage is true', done => {
+    const origin = console.warn
+    let called = false
+    console.warn = () => {
+      called = true
+    }
+    const inc = () => 'hello'
+    const inc20 = intervalCall(20, {logCancelMessage: true})(inc)
+    expect(inc20()).to.be.equal('hello')
+    setTimeout(() => {
+      expect(inc20()).to.be.equal(undefined)
+      expect(called).to.be.equal(true)
+      done()
+      console.warn = origin
+    }, 10)
+  })
+  it('should not be printed cancel message when logCancelMessage is false', done => {
+    const origin = console.warn
+    let called = false
+    console.warn = () => {
+      called = true
+    }
+    const inc = () => 'hello'
+    const inc20 = intervalCall(20, {logCancelMessage: false})(inc)
+    expect(inc20()).to.be.equal('hello')
+    setTimeout(() => {
+      expect(inc20()).to.be.equal(undefined)
+      expect(called).to.be.equal(false)
+      done()
+      console.warn = origin
+    }, 10)
+  })
 })
