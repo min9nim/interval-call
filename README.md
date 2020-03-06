@@ -35,7 +35,7 @@ setTimeout(() => {
 
 ### useRootContext option
 
-useRootContext is whether sharing context
+`useRootContext` is whether sharing context
 
 ```
 default: false
@@ -70,7 +70,7 @@ flag = 0
  * intervalInc1, intervalInc2 share the context when 2nd parameter is true
  */
 
-const interval200 = intervalCall(200, {useRootContext: true})
+const interval200 = intervalCall(200, { useRootContext: true })
 const interval200addOne = interval200(addOne)
 const interval200addTwo = interval200(addTwo)
 
@@ -83,7 +83,7 @@ console.log(flag) // print 1
 
 ### logCancelMessage option
 
-logCancelMessage is whether to print cancel message or not
+`logCancelMessage` is whether to print cancel message or not
 
 ```
 default: false
@@ -93,7 +93,7 @@ default: false
 
 ```javascript
 const inc = () => 'hello'
-const inc20 = intervalCall(20, {logCancelMessage: true})(inc)
+const inc20 = intervalCall(20, { logCancelMessage: true })(inc)
 inc20() // return 'hello'
 inc20() // canceled, and printed console log '`inc` is canceled by intervalCall`'
 ```
