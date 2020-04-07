@@ -15,7 +15,7 @@ npm i interval-call
 ### Usage
 
 ```javascript
-const intervalCall = require('interval-call')
+const intervalCall = require('interval-call').default
 // import intervalCall from 'interval-call'
 
 let flag = 0
@@ -44,7 +44,7 @@ default: false
 <br>
 
 ```javascript
-const intervalCall = require('interval-call')
+const intervalCall = require('interval-call').default
 
 let flag = 0
 
@@ -96,4 +96,24 @@ const fn = () => 'hello'
 const fn2 = intervalCall(20, { logCancelMessage: true })(fn)
 fn2() // return 'hello'
 fn2() // canceled, and printed console log '`inc` is canceled by intervalCall`'
+```
+
+<br>
+
+### debouce
+
+```javascript
+const { debounce } = require('interval-call').default
+
+let count = 0
+let inc = () => {
+  count++
+}
+inc = debounce(inc, 50)
+inc()
+inc()
+console.log(count) // print 0
+setTimeout(() => {
+  console.log(count) // print 1
+}, 100)
 ```

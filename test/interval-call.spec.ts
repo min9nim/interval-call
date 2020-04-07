@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import intervalCall from '../src'
+import intervalCall, {debounce} from '../src'
 
 describe('intervalCall', () => {
   it('should not call 2nd function within interval', done => {
@@ -95,5 +95,22 @@ describe('intervalCall', () => {
       done()
       console.warn = origin
     }, 10)
+  })
+  it('should be called once when continuous called', done => {
+    let count = 0
+    let inc = () => {
+      count++
+    }
+    inc()
+    inc()
+    expect(count).to.be.equal(2)
+    inc = debounce(inc, 50)
+    inc()
+    inc()
+    expect(count).to.be.equal(2)
+    setTimeout(() => {
+      expect(count).to.be.equal(3)
+      done()
+    }, 100)
   })
 })
