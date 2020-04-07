@@ -100,7 +100,7 @@ fn2() // canceled, and printed console log '`inc` is canceled by intervalCall`'
 
 <br>
 
-### debouce
+### debounce
 
 ```javascript
 const { debounce } = require('interval-call')
