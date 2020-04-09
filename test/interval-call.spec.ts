@@ -103,13 +103,16 @@ describe('intervalCall', () => {
     }
     inc()
     inc()
-    expect(count).to.be.equal(2)
+    inc()
+    inc()
+    expect(count).to.be.equal(4)
     inc = debounce(inc, 10)
     inc()
     inc()
-    expect(count).to.be.equal(2)
+    inc()
+    expect(count).to.be.equal(4)
     setTimeout(() => {
-      expect(count).to.be.equal(3)
+      expect(count).to.be.equal(5)
       done()
     }, 20)
   })
@@ -126,6 +129,35 @@ describe('intervalCall', () => {
     obj.func1()
     setTimeout(() => {
       expect(obj.num).to.be.equal(3)
+      done()
+    }, 20)
+  })
+  it('should be called immediately when 3rd parameter is true', done => {
+    let count = 0
+    let inc = () => {
+      count++
+    }
+    inc = debounce(inc, 10, true)
+    inc()
+    expect(count).to.be.equal(1)
+    inc()
+    inc()
+    expect(count).to.be.equal(1)
+    setTimeout(() => {
+      expect(count).to.be.equal(2)
+      done()
+    }, 20)
+  })
+  it('should be called once when 3rd parameter is true', done => {
+    let count = 0
+    let inc = () => {
+      count++
+    }
+    inc = debounce(inc, 10, true)
+    inc()
+    expect(count).to.be.equal(1)
+    setTimeout(() => {
+      expect(count).to.be.equal(1)
       done()
     }, 20)
   })
