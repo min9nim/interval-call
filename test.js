@@ -1,19 +1,14 @@
-const intervalCall = require('./dist/index').default
+const { debounce } = require('./dist/index')
 
-let flag = 0
-
-const addOne = () => {
-  flag = flag + 1
+let count = 0
+let inc = () => {
+  count++
 }
-
-/*
- * intervalInc1, intervalInc2 is works Independently
- */
-const interval100 = intervalCall(100)
-const interval100addOne = interval100(addOne)
-interval100addOne() // call immediateley
-interval100addOne() // call immediateley
-interval100addOne() // call immediateley
-interval100addOne() // call immediateley
-interval100addOne() // call immediateley
-console.log(flag) // print 3
+inc = debounce(inc, 50, true)
+inc()
+console.log(count) // print 1
+inc()
+console.log(count) // print 1
+setTimeout(() => {
+  console.log(count) // print 2
+}, 100)

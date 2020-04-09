@@ -102,6 +102,8 @@ fn2() // canceled, and printed console log '`inc` is canceled by intervalCall`'
 
 ### debounce
 
+Make a function called only the last once when the function is called continuously
+
 ```javascript
 const { debounce } = require('interval-call')
 
@@ -111,9 +113,29 @@ let inc = () => {
 }
 inc = debounce(inc, 50)
 inc()
+console.log(count) // print 0
 inc()
 console.log(count) // print 0
 setTimeout(() => {
   console.log(count) // print 1
+}, 100)
+```
+
+3rd parameter make the function called immediately first
+
+```javascript
+const { debounce } = require('interval-call')
+
+let count = 0
+let inc = () => {
+  count++
+}
+inc = debounce(inc, 50, true)
+inc()
+console.log(count) // print 1
+inc()
+console.log(count) // print 1
+setTimeout(() => {
+  console.log(count) // print 2
 }, 100)
 ```
