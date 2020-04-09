@@ -34,12 +34,12 @@ export default function intervalCall(interval = 1000, options?: IOptions) {
   }
 }
 
-export function debounce(callback: (...args: any[]) => void, ms: number) {
+export function debounce(callback, ms: number): any {
   let timeout
-  return (...args) => {
+  return function(this: any, ...args){
     if (timeout) {
       clearTimeout(timeout)
     }
-    timeout = setTimeout(() => callback(...args), ms)
+    timeout = setTimeout(() => callback.apply(this, args), ms)
   }
 }

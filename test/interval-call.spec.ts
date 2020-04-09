@@ -104,13 +104,29 @@ describe('intervalCall', () => {
     inc()
     inc()
     expect(count).to.be.equal(2)
-    inc = debounce(inc, 50)
+    inc = debounce(inc, 10)
     inc()
     inc()
     expect(count).to.be.equal(2)
     setTimeout(() => {
       expect(count).to.be.equal(3)
       done()
-    }, 100)
+    }, 20)
+  })
+  it('should be bound this object', done => {
+    const obj = {
+      num: 1,
+      func1() {
+        this.num = this.num + 1
+      },
+    }
+    obj.func1()
+    expect(obj.num).to.be.equal(2)
+    obj.func1 = debounce(obj.func1, 10)
+    obj.func1()
+    setTimeout(() => {
+      expect(obj.num).to.be.equal(3)
+      done()
+    }, 20)
   })
 })
